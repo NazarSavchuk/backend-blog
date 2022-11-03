@@ -12,11 +12,17 @@ import {
 import { handleValidationError, checkAuth } from "./utils/index.js";
 import { UserController, PostController } from "./controllers/index.js";
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("DB is OK"))
-  .catch((err) => console.log("DB ERROR", err));
-
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(db, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("mongoose connection is successful on: " + db);
+    }
+  });
+}
 const app = express();
 
 const storage = multer.diskStorage({
@@ -56,9 +62,9 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
 
 app.get("/posts", PostController.getAll);
 app.get("/tags", PostController.getLastTags);
-app.get('/', (req, res) => {
-  res.send('APP IS RUNNING')
-})
+app.get("/", (req, res) => {
+  res.send("APP IS RUNNING");
+});
 
 app.get("/posts/:id", PostController.getOne);
 
