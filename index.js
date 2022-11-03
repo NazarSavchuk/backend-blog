@@ -56,6 +56,9 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
 
 app.get("/posts", PostController.getAll);
 app.get("/tags", PostController.getLastTags);
+app.get('/', (req, res) => {
+  res.send('APP IS RUNNING')
+})
 
 app.get("/posts/:id", PostController.getOne);
 
