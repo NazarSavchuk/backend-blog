@@ -14,12 +14,10 @@ import { UserController, PostController } from "./controllers/index.js";
 
 mongoose
   .connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log("DB is OK");
-    const app = express();
-  })
+  .then(() => console.log("DB is OK"))
   .catch((err) => console.log("DB ERROR", err));
 
+const app = express();
 const storage = multer.diskStorage({
   destination: (_, __, cb) => {
     cb(null, "uploads");
