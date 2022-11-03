@@ -12,17 +12,11 @@ import {
 import { handleValidationError, checkAuth } from "./utils/index.js";
 import { UserController, PostController } from "./controllers/index.js";
 
-if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI);
-} else {
-  mongoose.connect(db, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("mongoose connection is successful on: " + db);
-    }
-  });
-}
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log("DB is OK"))
+  .catch((err) => console.log("DB ERROR", err));
+
 const app = express();
 
 const storage = multer.diskStorage({
