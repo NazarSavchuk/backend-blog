@@ -11,7 +11,7 @@ import {
 
 import { handleValidationError, checkAuth } from "./utils/index.js";
 import { UserController, PostController } from "./controllers/index.js";
-
+//update
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("DB is OK"))
