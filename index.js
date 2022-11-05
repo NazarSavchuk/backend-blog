@@ -2,7 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import multer from "multer";
 import cors from "cors";
-//503 error from mongodb
 import {
   registerValidation,
   loginValidation,
@@ -11,7 +10,6 @@ import {
 
 import { handleValidationError, checkAuth } from "./utils/index.js";
 import { UserController, PostController } from "./controllers/index.js";
-//update
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("DB is OK"))
@@ -81,9 +79,6 @@ app.patch(
 app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log(err);
-  }
-  if (process.env.PORT) {
-    console.log(process.env.PORT);
   }
 
   console.log("Server is OK");
