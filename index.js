@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
   res.send("APP IS RUNNING");
 });
 
-app.get("posts/:id", PostController.getOne);
+app.get("/posts/:id", PostController.getOne);
 
 app.post(
   "/posts",
